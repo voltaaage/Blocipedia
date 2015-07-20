@@ -1,2 +1,23 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div class="jumbotron">
+  <h1>Blocipedia</h1>
+  <p>Blocipedia is a web application that allows you to create public and private Markdown-based wikis</p>
+  <p>
+      <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary' %> or
+      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
+  </p>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h2>Collaboration</h2>
+    <p>Collaborate on community-sourced content!</p>
+  </div>
+  <div class="col-md-4">
+    <h2>Hobbies? Work?</h2>
+    <p>Wikis are not exclusive to any topic. If you have information to share, go ahead and contibute!</p>
+  </div>
+  <div class="col-md-4">
+    <h2>Premium Accounts</h2>
+    <p>Premium membership means you get to create private wikis.</p>
+  </div>
+</div>
