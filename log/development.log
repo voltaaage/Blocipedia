@@ -1352,3 +1352,260 @@ Processing by Devise::SessionsController#new as HTML
   Rendered devise/shared/_links.html.erb (0.8ms)
   Rendered devise/sessions/new.html.erb within layouts/application (8.7ms)
 Completed 200 OK in 113ms (Views: 111.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/confirmation/new" for ::1 at 2015-07-21 00:03:55 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Devise::ConfirmationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.8ms)
+  Rendered devise/confirmations/new.html.erb within layouts/application (333.3ms)
+Completed 200 OK in 766ms (Views: 719.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-07-21 00:03:56 -0500
+
+
+Started GET "/assets/application.self-184b7b481b86da34bc7b234cea051763355441bf86ebcc2457f787f82b7c02a9.css?body=1" for ::1 at 2015-07-21 00:03:56 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-07-21 00:03:56 -0500
+
+
+Started POST "/users/confirmation" for ::1 at 2015-07-21 00:04:03 -0500
+Processing by Devise::ConfirmationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wZSTaNJGeU6zpmfQkBOEPie+77Hz0M6VeyBy9P0uXOYkwWafyfpVOH2mbASV2din7XT61kdVdLnznFHYkkRBQQ==", "user"=>{"email"=>"fong.fan.90@gmail.com"}, "commit"=>"Resend confirmation instructions"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."unconfirmed_email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["unconfirmed_email", "fong.fan.90@gmail.com"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "fong.fan.90@gmail.com"]]
+  [1m[35mUser Load (1.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["confirmation_token", "37799e0678c192083fb28a43bdd4f2e9128f799c85308bccfb61e6c64d63a035"]]
+  [1m[36m (0.7ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.9ms)[0m  UPDATE "users" SET "confirmation_token" = ?, "confirmation_sent_at" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["confirmation_token", "37799e0678c192083fb28a43bdd4f2e9128f799c85308bccfb61e6c64d63a035"], ["confirmation_sent_at", "2015-07-21 05:04:04.054378"], ["updated_at", "2015-07-21 05:04:04.075863"], ["id", 1]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+  Rendered devise/mailer/confirmation_instructions.html.erb (1.1ms)
+
+Devise::Mailer#confirmation_instructions: processed outbound mail in 384.3ms
+
+Sent mail to fong.fan.90@gmail.com (10.4ms)
+Date: Tue, 21 Jul 2015 00:04:04 -0500
+From: do-not-reply@FFBlocipedia.com
+Reply-To: do-not-reply@FFBlocipedia.com
+To: fong.fan.90@gmail.com
+Message-ID: <55add2c49417a_e1713ff734a5a3f0489b2@Fongs-MBP.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome fong.fan.90@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=jEgaZZxs2hHWxxMeHagg">Confirm my account</a></p>
+
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 844ms (ActiveRecord: 7.5ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2015-07-21 00:04:04 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 105ms (Views: 102.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/confirmation/new" for ::1 at 2015-07-21 00:10:15 -0500
+Processing by Devise::ConfirmationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (2.8ms)
+  Rendered devise/confirmations/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 143ms (Views: 134.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/confirmation" for ::1 at 2015-07-21 00:10:21 -0500
+Processing by Devise::ConfirmationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GY7c5jjSaIQSQyqHbEPk+eG9thIlaEbofvsqvtq5q7D82ykRI25E8txDIVNpibhgK3ejdZHt/MT2RwmStdO2Fw==", "user"=>{"email"=>"fong.fan.90@gmail.com"}, "commit"=>"Resend confirmation instructions"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."unconfirmed_email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["unconfirmed_email", "fong.fan.90@gmail.com"]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "fong.fan.90@gmail.com"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["confirmation_token", "b87e5b1f4f7627c975008a88f12b1fec9d2401b437d8f6893d8cb62258aa5dc8"]]
+  [1m[36m (0.9ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (8.5ms)[0m  UPDATE "users" SET "confirmation_token" = ?, "confirmation_sent_at" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["confirmation_token", "b87e5b1f4f7627c975008a88f12b1fec9d2401b437d8f6893d8cb62258aa5dc8"], ["confirmation_sent_at", "2015-07-21 05:10:22.007286"], ["updated_at", "2015-07-21 05:10:22.011607"], ["id", 1]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  Rendered devise/mailer/confirmation_instructions.html.erb (0.9ms)
+
+Devise::Mailer#confirmation_instructions: processed outbound mail in 65.3ms
+
+Sent mail to fong.fan.90@gmail.com (8.3ms)
+Date: Tue, 21 Jul 2015 00:10:22 -0500
+From: do-not-reply@FFBlocipedia.com
+Reply-To: do-not-reply@FFBlocipedia.com
+To: fong.fan.90@gmail.com
+Message-ID: <55add43e18083_e1713ff7394c6484490e0@Fongs-MBP.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome fong.fan.90@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=eWFBqFyYQwaqDh4NCJN7">Confirm my account</a></p>
+
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 174ms (ActiveRecord: 12.3ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2015-07-21 00:10:22 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 94ms (Views: 91.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "name" varchar, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150719230455')[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "name" varchar, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (2.3ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150719230455')
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/users/sign_in" for ::1 at 2015-07-21 00:12:24 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (538.1ms)
+Completed 200 OK in 929ms (Views: 898.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-07-21 00:12:26 -0500
+
+
+Started GET "/assets/application.self-184b7b481b86da34bc7b234cea051763355441bf86ebcc2457f787f82b7c02a9.css?body=1" for ::1 at 2015-07-21 00:12:26 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-07-21 00:12:26 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-07-21 00:12:26 -0500
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-07-21 00:12:26 -0500
+
+
+Started GET "/assets/jquery_ujs.self-ca5248a2fad13d6bd58ea121318d642f195f0b2dd818b30615f785ff365e8d1f.js?body=1" for ::1 at 2015-07-21 00:12:26 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-07-21 00:12:26 -0500
+
+
+Started GET "/users/sign_up" for ::1 at 2015-07-21 00:12:27 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.8ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 95ms (Views: 93.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2015-07-21 00:12:38 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"L50cYsyDbNgiG0zp1ozjLcMiX7/FG/RwVBhveVlbn5fKyOmV1z9AruwbRz3TRr+0CehK2HGeTlzcpExVNjGCMA==", "user"=>{"name"=>"Fong", "email"=>"fong.fan.90@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'fong.fan.90@gmail.com' LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["confirmation_token", "c6442b9051ce81bb5e78079d9e387619ae3771f08a44baf146b02b3b557066d6"]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "name", "created_at", "updated_at", "confirmation_token", "confirmation_sent_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["email", "fong.fan.90@gmail.com"], ["encrypted_password", "$2a$10$Mqs02GVLld3l8WIAStAsauZWnjl1sa.NI/0zyE13sDi5Mijy6xMui"], ["name", "Fong"], ["created_at", "2015-07-21 05:12:38.253743"], ["updated_at", "2015-07-21 05:12:38.253743"], ["confirmation_token", "c6442b9051ce81bb5e78079d9e387619ae3771f08a44baf146b02b3b557066d6"], ["confirmation_sent_at", "2015-07-21 05:12:38.496622"]]
+  Rendered devise/mailer/confirmation_instructions.html.erb (8.2ms)
+
+Devise::Mailer#confirmation_instructions: processed outbound mail in 459.7ms
+
+Sent mail to fong.fan.90@gmail.com (872.6ms)
+Date: Tue, 21 Jul 2015 00:12:38 -0500
+From: do-not-reply@FFBlocipedia.com
+Reply-To: do-not-reply@FFBlocipedia.com
+To: fong.fan.90@gmail.com
+Message-ID: <55add4c6edf24_e1c63fd71daa85dc96ce@Fongs-MBP.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome fong.fan.90@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=2oVRUSRiaEf8c6A3Kage">Confirm my account</a></p>
+
+  [1m[35m (0.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 1699ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/" for ::1 at 2015-07-21 00:12:39 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 79ms (Views: 77.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/confirmation?confirmation_token=2oVRUSRiaEf8c6A3Kage" for ::1 at 2015-07-21 00:22:32 -0500
+Processing by Devise::ConfirmationsController#show as HTML
+  Parameters: {"confirmation_token"=>"2oVRUSRiaEf8c6A3Kage"}
+  [1m[36mUser Load (1.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["confirmation_token", "c6442b9051ce81bb5e78079d9e387619ae3771f08a44baf146b02b3b557066d6"]]
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36mSQL (1.6ms)[0m  [1mUPDATE "users" SET "confirmation_token" = ?, "confirmed_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["confirmation_token", nil], ["confirmed_at", "2015-07-21 05:22:33.174188"], ["updated_at", "2015-07-21 05:22:33.176144"], ["id", 1]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36mUser Load (3.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 194ms (ActiveRecord: 7.7ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2015-07-21 00:22:33 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (78.8ms)
+Completed 200 OK in 204ms (Views: 201.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-184b7b481b86da34bc7b234cea051763355441bf86ebcc2457f787f82b7c02a9.css?body=1" for ::1 at 2015-07-21 00:22:33 -0500
+
+
+Started POST "/users/sign_in" for ::1 at 2015-07-21 00:22:38 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1bdaO3bHNPJSp5Hl7kvYjTAIf9xpObHUUrReLTBhaiTAi77izUj6CxY5I7+L+DsDTQjeiuVdHsvvUpGcTzJw+Q==", "user"=>{"email"=>"fong.fan.90@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (1.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "fong.fan.90@gmail.com"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2015-07-21 05:22:38.799293"], ["current_sign_in_at", "2015-07-21 05:22:38.799293"], ["last_sign_in_ip", "::1"], ["current_sign_in_ip", "::1"], ["sign_in_count", 1], ["updated_at", "2015-07-21 05:22:38.801313"], ["id", 1]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 131ms (ActiveRecord: 4.8ms)
+
+
+Started GET "/" for ::1 at 2015-07-21 00:22:38 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.8ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 200 OK in 142ms (Views: 140.3ms | ActiveRecord: 0.3ms)
