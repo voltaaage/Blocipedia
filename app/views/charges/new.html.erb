@@ -1,4 +1,28 @@
-<%= form_tag charges_path do %>
-  <h4>Click the button!</h4>
-  <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
-<% end %>
+<h2>Premium Membership</h2>
+<h4>Upgrade to a Premium Blocipedia Membership today!</h4>
+<br>
+<div class="row">
+  <div class="col-md-4">
+    <p>Upgrading your account will enable these amazing features:</p>
+    <ul>
+      <li>Create private wikis</li>
+      <li>Invite collaborators to your private wikis</li>
+      <li>Feel like a boss with premium status</li>
+    </ul>
+    <br>
+  </div>
+  <div class="col-md-3">
+    <%= form_tag charges_path do %>
+      <article>
+        <label class="amount">
+          <span style="color:green">Amount: $15.00</span>
+        </label>
+      </article>
+      <script 
+        class='stripe-button' src="https://checkout.stripe.com/checkout.js" 
+        data-key="<%= @stripe_btn_data[:key] %>" 
+        data-amount=<%= @stripe_btn_data[:amount] %> 
+        data-description="<%= @stripe_btn_data[:description] %>" ></script>
+    <% end %>
+  </div>
+</div>

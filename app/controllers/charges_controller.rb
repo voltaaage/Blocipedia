@@ -10,6 +10,8 @@ class ChargesController < ApplicationController
   end
 
   def create
+    @was_standard = (current_user.role == "standard")
+
     customer = Stripe::Customer.create(
       email: current_user.email,
       card: params[:stripeToken]
@@ -22,11 +24,13 @@ class ChargesController < ApplicationController
       currency: 'usd'
     )
 
-    flash[:success] = "Thanks for upgrading your account, #{current_user}! Feel free to invite others to upgrade as well!"
-    redirect_to user_path(current_user)
+    flash[:success] = "Thanks for upgrading your account, #{current_user}!"
+    current_user.upgrade! # Upgrade user if charge went through successfully
+    redirect_to root_path
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
+    user.downgrade! if @was_standard # We don't want to take away their premium membership if they were premium before
     redirect_to new_charge_path
   end
 end
