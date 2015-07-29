@@ -19,14 +19,6 @@ class User < ActiveRecord::Base
     role == 'standard'
   end
 
-  def upgrade
-    role = 'premium'
-  end
-
-  def downgrade
-    role = 'standard'
-  end
-
   private
 
   def default_role

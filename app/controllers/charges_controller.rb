@@ -25,12 +25,13 @@ class ChargesController < ApplicationController
     )
 
     flash[:success] = "Thanks for upgrading your account, #{current_user}!"
-    current_user.upgrade! # Upgrade user if charge went through successfully
+    current_user.update(role: 'premium')
+    byebug
     redirect_to root_path
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    user.downgrade! if @was_standard # We don't want to take away their premium membership if they were premium before
+    current_user.update(role: 'standard') if @was_standard # We don't want to take away their premium membership if they were premium before
     redirect_to new_charge_path
   end
 end

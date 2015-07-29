@@ -7,6 +7,8 @@ gem 'figaro', '1.0' # Figaro
 gem 'faker' # Faker - seed data
 gem 'pundit' # Pundit - user roles
 gem 'stripe' # Stripe - payment setup
+gem 'factory_girl_rails', '~>4.0'
+gem 'stripe-ruby-mock', '~> 2.1.1', :require => 'stripe_mock' # Rspec for stripe
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -44,6 +46,8 @@ group :production do
 end
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
