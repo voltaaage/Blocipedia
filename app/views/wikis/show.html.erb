@@ -1,4 +1,9 @@
-<h1><%= @wiki.title %></h1>
-<%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
-<%= link_to "Destroy", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this wiki?' } %>
+<br>
+<% if @wiki.private %>
+  <p><i>Note: this wiki is private</i></p>
+<% end %>
+<%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-success' %>
+<%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this wiki?' } %>
+<h2><%= @wiki.title %></h2>
+
 <p><%= @wiki.body %></p>
