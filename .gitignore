@@ -1,6 +1,3 @@
-# Ignore environment vairables
-/config/application.yml
-
 # Ignore bundler config.
 /.bundle
 

@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
     role == 'standard'
   end
 
-
   private
 
   def default_role
