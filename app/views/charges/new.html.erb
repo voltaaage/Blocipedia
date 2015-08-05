@@ -12,17 +12,21 @@
     <br>
   </div>
   <div class="col-md-3">
-    <%= form_tag charges_path do %>
-      <article>
-        <label class="amount">
-          <span style="color:green">Amount: $15.00</span>
-        </label>
-      </article>
-      <script 
-        class='stripe-button' src="https://checkout.stripe.com/checkout.js" 
-        data-key="<%= @stripe_btn_data[:key] %>" 
-        data-amount=<%= @stripe_btn_data[:amount] %> 
-        data-description="<%= @stripe_btn_data[:description] %>" ></script>
+    <% if current_user.role == 'standard' %>
+      <%= form_tag charges_path do %>
+        <article>
+          <label class="amount">
+            <span style="color:green">Amount: $15.00</span>
+          </label>
+        </article>
+        <script 
+          class='stripe-button' src="https://checkout.stripe.com/checkout.js" 
+          data-key="<%= @stripe_btn_data[:key] %>" 
+          data-amount=<%= @stripe_btn_data[:amount] %> 
+          data-description="<%= @stripe_btn_data[:description] %>" ></script>
+      <% end %>
+    <% else %>
+      <i>You are already a premium member. Thanks for your business!</i>
     <% end %>
   </div>
 </div>
