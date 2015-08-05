@@ -11,30 +11,28 @@ class ChargesController < ApplicationController
 
   def create
     @user = current_user
-    @was_standard = (@user.role == 'standard')
 
-    if @was_standard
-      customer = Stripe::Customer.create(
-        email: @user.email,
-        card: params[:stripeToken]
-      )
+    customer = Stripe::Customer.create(
+      email: @user.email,
+      card: params[:stripeToken]
+    )
 
-      charge = Stripe::Charge.create(
-        customer: customer.id,
-        amount: Amount.default,
-        description: "Blocipedia Membership - #{@user.email}",
-        currency: 'usd'
-      )
-
-      flash[:success] = "Thanks for upgrading your account, #{@user}!"
-      @user.update(role: 'premium')
-      redirect_to root_path
-    end
-
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    @user.update(role: 'standard') if !@was_standard # We don't want to take away their premium membership if they were premium before
-    redirect_to new_charge_path
+    charge = Stripe::Charge.create(
+      customer: customer.id,
+      amount: Amount.default,
+      description: "Blocipedia Membership - #{@user.email}",
+      currency: 'usd'
+    )
+    
+    @user.update(role: 'premium')
+    flash[:success] = "Thanks for upgrading your account, #{@user}!"
+    
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      @user.update(role: 'standard') if !@was_standard # We don't want to take away their premium membership if they were premium before
+      redirect_to new_charge_path
   end
+
+
 end
 
