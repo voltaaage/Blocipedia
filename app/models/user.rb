@@ -1,11 +1,17 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-
-  after_initialize :default_role
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  has_many :wikis
+  
+  # Associations
+  has_many :collaborators
+  has_many :wikis, through: :collaborators
+  
+  # delegates
+  delegate :wikis, to: :collaborators
+  
+  after_initialize :default_role
 
   def admin?
     role == 'admin'
@@ -17,6 +23,10 @@ class User < ActiveRecord::Base
 
   def standard?
     role == 'standard'
+  end
+
+  def collaborators
+    Collaborator.where(user_id: id)
   end
 
   private

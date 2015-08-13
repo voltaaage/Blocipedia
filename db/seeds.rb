@@ -57,6 +57,10 @@ users = User.all
     body: Faker::Lorem.paragraph,
     user: users.sample,
     private: false
+    Collaborator.create!(
+      wiki_id: self.id,
+      user_id: self.user.id
+    )
   )
 end
 

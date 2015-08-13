@@ -6,6 +6,7 @@
       <% end %>
     </div>
   <% end %>
+  <% select(@collaborator,'user_id',@users_list) %>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
