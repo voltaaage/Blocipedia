@@ -52,17 +52,20 @@ users = User.all
 
 # Create wikis
 50.times do 
-  Wiki.create!(
+  wiki = Wiki.create!(
     title: Faker::Lorem.sentence,
     body: Faker::Lorem.paragraph,
-    user: users.sample,
     private: false
-    Collaborator.create!(
-      wiki_id: self.id,
-      user_id: self.user.id
-    )
   )
+  for i in 0..rand(5)
+    collaborater = Collaborator.new(
+        wiki_id: wiki.id,
+        user_id: users.sample.id
+    )
+    collaborater.save!
+  end
 end
 
 puts "#{User.count} users were created."
 puts "#{Wiki.count} users were created."
+puts "#{Collaborator.count} collaborator objects were created."

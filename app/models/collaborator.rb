@@ -1,11 +1,10 @@
 class Collaborator < ActiveRecord::Base
-
   # Associations
   belongs_to :user
   belongs_to :wiki
 
   def self.wikis
-    Wiki.where(id: pluck(:movie_id))
+    Wiki.where(id: pluck(:wiki_id))
   end
 
   def self.users
