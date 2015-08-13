@@ -67,5 +67,5 @@ users = User.all
 end
 
 puts "#{User.count} users were created."
-puts "#{Wiki.count} users were created."
+puts "#{Wiki.count} wikis were created."
 puts "#{Collaborator.count} collaborator objects were created."

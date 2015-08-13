@@ -2,7 +2,7 @@
 <% if @wiki.private %>
   <p><i>Note: this wiki is private</i></p>
 <% end %>
-<p>Collaborators:</p>
+<p>Collaborators (for testing):</p>
 <ul>
   <% @collaborators.each do |collaborator| %>
     <li><%= collaborator.user.name %></li>
