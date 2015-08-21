@@ -7,6 +7,9 @@ class Wiki < ActiveRecord::Base
   # Scope
   scope :visible_to, -> (user) { (user.role == 'premium' || user.role == 'admin') ? all : where(private: false) }
   
+  #Need to define two scopes: users that are already collaborators and users that aren't
+  #scope :non_collaborators, -> (user) { self.no_existing_collaboration(user.id,self.id) }
+
   # Delegates
   delegate :users, to: :collaborators
 
@@ -22,13 +25,16 @@ class Wiki < ActiveRecord::Base
     # for each user selected from the form
     users.each do |user_to_add|
       # perform check on whether the relationship already exists
-      if no_existing_collaboration? 
-        Collaborator.new(
+      puts self.id
+      # if no_existing_collaboration?(user_to_add.id,self.id)
+        collaborator = Collaborator.new(
           wiki_id: self.id,
-          user_id: user_to_add
+          user_id: user_to_add.id
         )
-      end
+        collaborator.save!
+      # end
     end
+    
   end
 
   def no_existing_collaboration?(user_id,wiki_id)

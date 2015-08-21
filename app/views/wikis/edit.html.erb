@@ -1,12 +1,13 @@
 <h1>Edit a Wiki</h1>
-
+<%= link_to "<< return to the wiki", @wiki %>
+<br><br>
+<p>You are editing a wiki. Guidelines: Make sure the information is accurate!</p>
 <div class="row">
-  <p>You are editing a wiki. Guidelines: Make sure the information is accurate!</p>
-</div>
-<div class="row">
-  <div class="col-md-6">
+  <div class="col-md-8">
     <%= render partial: 'form', locals: {wiki: @wiki} %>
+  </div>
+  <div class="col-md-4">
+    <%= render partial: 'collaborators/form', locals: {wiki: @wiki, users: @users, collaborators: @collaborators, non_collaborators: @non_collaborators} %>
   </div>
 </div>
 
-</div>

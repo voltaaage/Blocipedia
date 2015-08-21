@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   # Associations
   has_many :collaborators
   has_many :wikis, through: :collaborators
-  
-  # delegates
+
+  # Delegates
   delegate :wikis, to: :collaborators
   
   after_initialize :default_role

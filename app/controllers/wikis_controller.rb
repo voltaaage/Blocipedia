@@ -5,7 +5,8 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-    @collaborators = Collaborator.where(wiki_id: @wiki.id)
+    @collaborations = Collaborator.where(wiki_id: @wiki)
+    @collaborators = User.where(id: @collaborations.pluck(:user_id))
   end
 
   def new
@@ -28,7 +29,22 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
-    @users_list = User.all.map{|u| [u.name,u.id] }
+    @collaborators = []
+    @non_collaborators = []
+    User.all.each do |user|
+      collaborator_exists = Collaborator.exists?(user_id: user.id, wiki_id: @wiki.id)
+      if collaborator_exists
+          @collaborators << user unless @collaborators.include?(user)
+      else
+          @non_collaborators << user unless @non_collaborators.include?(user)
+      end
+    end
+
+    # @collaborations = Collaborator.where(wiki_id: @wiki)
+    # @collaborators = User.where(id: @collaborations.pluck(:user_id))
+    # @non_collaborators = User.where()
+
+    @users = User.all
     authorize @wiki
   end
 
@@ -38,11 +54,10 @@ class WikisController < ApplicationController
 
     if @wiki.update_attributes(wiki_attributes)
       flash[:notice] = "Wiki was succesfully updated"
-      redirect_to @wiki
     else
       flash[:error] = "There was an error updating the wiki. Please try again."
-      render :edit
     end
+    render :edit
   end
 
   def destroy
