@@ -41,7 +41,6 @@ class WikisController < ApplicationController
       end
     end
 
-    #@users = User.all
     authorize @wiki
   end
 
@@ -54,7 +53,8 @@ class WikisController < ApplicationController
     else
       flash[:error] = "There was an error updating the wiki. Please try again."
     end
-    render :edit
+
+    redirect_to edit_wiki_path @wiki
   end
 
   def destroy
