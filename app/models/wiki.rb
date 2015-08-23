@@ -13,32 +13,12 @@ class Wiki < ActiveRecord::Base
   # Delegates
   delegate :users, to: :collaborators
 
-  def collaborators
-    Collaborator.where(wiki_id: id)
+  def collaboration_exists?(user)
+    self.collaborators.where(user: user).first
   end
 
-  def create_collaborators_from_array
-
-  end
-
-  def create_collaborator(users)
-    # for each user selected from the form
-    users.each do |user_to_add|
-      # perform check on whether the relationship already exists
-      puts self.id
-      # if no_existing_collaboration?(user_to_add.id,self.id)
-        collaborator = Collaborator.new(
-          wiki_id: self.id,
-          user_id: user_to_add.id
-        )
-        collaborator.save!
-      # end
-    end
-    
-  end
-
-  def no_existing_collaboration?(user_id,wiki_id)
-    !(Collaborator.where(user_id: user_id, wiki_id: wiki_id) == [])
+  def can_modify_wiki?(user)
+    self.collaboration_exists?(user) || user.role == 'admin'
   end
 
   def private?

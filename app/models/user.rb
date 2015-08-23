@@ -25,14 +25,10 @@ class User < ActiveRecord::Base
     role == 'standard'
   end
 
-  def collaborators
-    Collaborator.where(user_id: id)
-  end
-
   private
 
   def default_role
-    self.role ||= 'standard'
+    self.role ||= 'standard' # if role is false/empty then set it to 'standard'
   end
 
 end

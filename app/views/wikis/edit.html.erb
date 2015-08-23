@@ -6,8 +6,10 @@
   <div class="col-md-8">
     <%= render partial: 'form', locals: {wiki: @wiki} %>
   </div>
-  <div class="col-md-4">
-    <%= render partial: 'collaborators/form', locals: {wiki: @wiki, users: @users, collaborators: @collaborators, non_collaborators: @non_collaborators} %>
-  </div>
+  <% if @wiki.can_modify_wiki?(current_user) %>
+    <div class="col-md-4">
+      <%= render partial: 'collaborators/form', locals: {wiki: @wiki, collaborators: @collaborators, non_collaborators: @non_collaborators} %>
+    </div>
+  <% end %>
 </div>
 

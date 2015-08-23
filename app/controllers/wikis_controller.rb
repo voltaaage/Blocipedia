@@ -31,6 +31,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @collaborators = []
     @non_collaborators = []
+    
     User.all.each do |user|
       collaborator_exists = Collaborator.exists?(user_id: user.id, wiki_id: @wiki.id)
       if collaborator_exists
@@ -40,11 +41,7 @@ class WikisController < ApplicationController
       end
     end
 
-    # @collaborations = Collaborator.where(wiki_id: @wiki)
-    # @collaborators = User.where(id: @collaborations.pluck(:user_id))
-    # @non_collaborators = User.where()
-
-    @users = User.all
+    #@users = User.all
     authorize @wiki
   end
 
