@@ -5,34 +5,49 @@ describe Wiki do
 
   include TestFactories
 
-  context '#create_collaborator' do
-
-    it 'creates a collaborator' do
-
+  before do
       # setup
       user1 = authenticated_user
       user2 = authenticated_user
       users = User.all
       wiki = Wiki.new(id: 998, title: "This is a test wiki")
-      found_user_1 = false
-      found_user_2 = false
+      # create a test factory for wikis?
+  end
 
-      # function we are testing
-      wiki.create_collaborator(users)
+  context '#collaboration_exists?' do
 
-      # find collaborator models
-      wiki_specific_collaborators = Collaborator.where(wiki_id: wiki_id)
+    xit 'determines whether a user is a collaborator for the wiki' do
 
-      # expectations
-      wiki_specific_collaborators.each do |collaborator|
-        if collaborator.user_id == user1.id
-          found_user_1 = true
-        elsif collaborator.user_id == user2.id
-          found_user_2 = true
-        end          
-      end
+    end
 
-      expect(found_user_1 && found_user_2).to be_true
+    
+
+  end
+
+  context '#can_modify_wiki?' do
+
+    xit 'identifies whether the user is a collaborator' do
+
+    end
+
+    xit 'identifies whether the user is an admin' do
+
+    end
+
+  end
+
+  context '#private?' do
+
+    xit 'tells you if the wiki is private' do
+
+    end
+
+  end
+
+  context '#public?' do
+
+    xit 'tells you if the wiki is public' do
+
     end
 
   end
