@@ -1,23 +1,73 @@
-<h4>Modify Contents</h4>
-<%= form_for wiki do |f| %>
-  <% #select(@collaborator,'user_id',@users_list) %>
-  <% if wiki.can_modify_wiki?(current_user) %>
-    <div class="form-group">
-      <%= f.label :private, class: 'checkbox' do %>
-      <%= f.check_box :private %> Private Wiki
+  <div class="row">
+
+  <div class="col-md-8">
+    <h4>Modify Contents</h4>
+      <%= form_for wiki do |f| %>
+
+        <% if wiki.errors.any? %>
+          <div class="alert alert-danger">
+            <h4>There are <%= pluralize(wiki.errors.count, "error") %>.</h4>
+            <ul>
+              <% wiki.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <% if wiki.can_modify_wiki?(current_user) %>
+          <div class="form-group">
+            <%= f.label :private, class: 'checkbox' do %>
+            <%= f.check_box :private %> Private Wiki
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :body %>
+          <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Save", class: 'btn btn-success' %>
+        </div>
+
       <% end %>
+
+  </div>
+
+  <% if @wiki.can_modify_wiki?(current_user) %>
+    <div class="col-md-4">
+      <h4>Existing Collaborators</h4>
+      <table class="table">
+
+        <thead>
+          <th>Name</th>
+          <th>Action</th>
+        </thead>
+
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td>
+                <% if @wiki.users.include? user %>
+                  <%= link_to '<i class="fa fa-minus-circle"></i>'.html_safe, wiki_collaborator_path(wiki_id: @wiki.id, user_id: user.id), method: :delete, class: 'btn btn-danger' %>
+                <% else %>
+                  <%= link_to '<i class="fa fa-plus-circle"></i>'.html_safe, wiki_collaborators_path(wiki_id: @wiki.id, user_id: user.id), method: :post, class: 'btn btn-success' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+
+      </table>
+
     </div>
   <% end %>
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :body %>
-    <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit "Save", class: 'btn btn-success' %>
-  </div>
-<% end %>
-
+</div>

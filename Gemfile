@@ -10,7 +10,6 @@ gem 'stripe' # Stripe - payment setup
 gem 'factory_girl_rails', '~>4.0'
 gem 'stripe-ruby-mock', '~> 2.1.1', :require => 'stripe_mock' # Rspec for stripe
 gem 'redcarpet' # Red Carpet - provides functionality for markdown text
-gem 'will-paginate'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
