@@ -4,7 +4,6 @@ class CollaboratorsController < ApplicationController
     user = User.find(params[:user_id])
     wiki = Wiki.find(params[:wiki_id])
     collaborator = Collaborator.new(wiki: wiki, user: user)
-    # authorize @collaborator
 
     if collaborator.save
       flash[:notice] = "#{user.name} was added as a collaborator to '#{wiki.title}'"
@@ -12,11 +11,6 @@ class CollaboratorsController < ApplicationController
       flash[:error] = "There was an error adding the collaborator. Please try again."
     end
     redirect_to edit_wiki_path wiki
-
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
   end
 
   def destroy
@@ -29,11 +23,6 @@ class CollaboratorsController < ApplicationController
       flash[:error] = "There was an error removing the collaborator. Please try again."
     end
     redirect_to edit_wiki_path wiki
-
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
   end
 
 end
