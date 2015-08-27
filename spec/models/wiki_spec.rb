@@ -5,51 +5,51 @@ describe Wiki do
 
   include TestFactories
 
-  before do
-      # setup
-      user1 = authenticated_user
-      user2 = authenticated_user
-      users = User.all
-      wiki = Wiki.new(id: 998, title: "This is a test wiki")
-      # create a test factory for wikis?
-  end
+  let!(:user) { authenticated_user }
+  let!(:wiki) { Wiki.new }
+  let!(:collaborator) { Collaborator.create(wiki: wiki, user: user) }
 
-  context '#collaboration_exists?' do
+  describe '#collaboration_exists' do
+    let(:user_2) { authenticated_user }
 
-    xit 'determines whether a user is a collaborator for the wiki' do
-
+    it 'return true if user is a collaborator' do 
+      expect(wiki.collaboration_exists?(user)).to eq(true)
     end
 
-    
 
-  end
-
-  context '#can_modify_wiki?' do
-
-    xit 'identifies whether the user is a collaborator' do
-
-    end
-
-    xit 'identifies whether the user is an admin' do
-
+    it 'returns false if user is not a collaborator' do
+      expect(wiki.collaboration_exists?(user_2)).to eq(false)
     end
 
   end
 
-  context '#private?' do
+  describe '#can_modify_wiki?(user)' do
+    context 'true' do
+      it 'should be able to modify if the user is a collaborator' do
+        allow(wiki).to receive(:collaboration_exists?).with(user).and_return(true)
+        allow(user).to receive(:role).and_return('not admin')
 
-    xit 'tells you if the wiki is private' do
+        expect(wiki.can_modify_wiki?(user)).to eq(true)
+      end
 
+      it 'should be able to modify the user is an admin' do
+        allow(wiki).to receive(:collaboration_exists?).with(user).and_return(false)
+        allow(user).to receive(:role).and_return('admin')
+
+        expect(wiki.can_modify_wiki?(user)).to eq(true)
+      end
     end
 
-  end
+    context 'false' do
+      it 'should not be able to modify if the user is not a collaborator nor an admin' do
+        allow(wiki).to receive(:collaboration_exists?).with(user).and_return(false)
+        allow(user).to receive(:role).and_return('not admin')
 
-  context '#public?' do
-
-    xit 'tells you if the wiki is public' do
-
+        expect(wiki.can_modify_wiki?(user)).to eq(false)
+      end
     end
-
   end
 
 end
+  
+
