@@ -26,7 +26,8 @@ class ChargesController < ApplicationController
     
     @user.update(role: 'premium')
     flash[:success] = "Thanks for upgrading your account, #{@user}!"
-    
+    redirect_to wikis_path
+
     rescue Stripe::CardError => e
       flash[:error] = e.message
       @user.update(role: 'standard') if !@was_standard # We don't want to take away their premium membership if they were premium before

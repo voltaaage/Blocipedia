@@ -4,3 +4,9 @@
 <% @wikis.each do |wiki| %>
   <p><%= link_to wiki.title, wiki_path(wiki.id) %></p>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    blocmetrics.report("Front Page Visited");
+  });
+</script>

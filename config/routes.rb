@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :wikis do 
     resources :collaborators, only: [:create, :destroy]
   end
+  
   resources :charges, only: [:new, :create]
   
   resources :users, only: [:update] do
@@ -13,4 +14,5 @@ Rails.application.routes.draw do
     post :upgrade
   end
 
+  post '/api/events'
 end
