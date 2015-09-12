@@ -14,5 +14,4 @@ Rails.application.routes.draw do
     post :upgrade
   end
 
-  post '/api/events'
 end
