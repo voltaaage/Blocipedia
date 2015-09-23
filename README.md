@@ -8,4 +8,4 @@ Members can upgrade their accounts by paying for a premium membership with Strip
 * Create and view private wikis
 * Add other users as collaborators to wikis
 
-_Note: As this is a project to learn about the above concepts and tools, there may be some gaps in functionality in the workflows and privacy policies. _
+Note: As this is a project to learn about the above concepts and tools, there may be some gaps in functionality in the workflows and privacy policies. 
